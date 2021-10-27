@@ -1,9 +1,9 @@
 # BitFaktura API
 
 
-Opis jak zintegrować własną aplikację lub serwis z systemem [Fakturownia.pl](https://fakturownia.pl)
+Popis jak integrovat vlastní aplikaci nebo službu ze systémem [BitFaktura.cz](https://bitfaktura.cz)
 
-Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami.
+Díky API můžete vystavovat faktury/účty/účtenky z jiných systému a spravovat tyto dokumenty, stejně jako klienty nebo produkty.
 
 Działające przykłady wywołania API Fakturowni znajdują się też w w systemie Fakturownia (po zalogowaniu) w menu <b>Ustawienia > API</b> oraz na stronie: https://app.fakturownia.pl/api
 
