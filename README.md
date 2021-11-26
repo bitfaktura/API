@@ -71,49 +71,49 @@ Funkční příklady vyvolání API BitFaktura naleznete také v systému BitFak
 	+ [Stažení vybrané platby po ID](#pl2)
 	+ [Přidání nové platby](#pl3)
 	+ [Stahování platby spolu s připnutými fakturačními údaji](#pl4)
-	+ [Dodanie nowej płatności powiązanej z istniejącymi fakturami](#pl5)
-	+ [Aktualizacja płatności](#pl6)
-	+ [Usuwanie płatności](#pl7)
+	+ [Přidání nové platby propojené se stávajícími fakturami](#pl5)
+	+ [Aktualizace plateb](#pl6)
+	+ [Smazání plateb](#pl7)
 + [Kategorie](#categories)
-	+ [Lista kategorii](#cat1)
-	+ [Pobranie wybranej kategorii po ID](#cat2)
-	+ [Dodanie nowej kategorii](#cat3)
-	+ [Aktualizacja kategorii](#cat4)
-	+ [Usunięcie kategorii o podanym ID](#cat5)
-+ [Magazyny](#warehouses)
-	+ [Lista magazynów](#wh1)
-	+ [Pobranie wybranego magazynu po ID](#wh2)
-	+ [Dodanie nowego magazynu](#wh3)
-	+ [Aktualizacja magazynu](#cat4)
-	+ [Usunięcie magazynu o podanym ID](#cat5)
-+ [Działy](#departments)
-	+ [Lista działów](#dep1)
-	+ [Pobranie wybranego działu po ID](#dep2)
-	+ [Dodanie nowego działu](#dep3)
-	+ [Aktualizacja_działu](#dep4)
-  	+ [Usunięcie działu o podanym ID](#dep5)
-+ [Logowanie i pobranie Tokena przez API](#get_token_by_api)
-+ [Konta systemowe](#accounts)
-+ [Przykłady w PHP i Ruby](#codes)
+	+ [Seznam kategorií](#cat1)
+	+ [Stažení vybrané kategorie po ID](#cat2)
+	+ [Přidání nové kategorie](#cat3)
+	+ [Aktualizace kategorie](#cat4)
+	+ [Odstranění kategorie po ID](#cat5)
++ [Sklady](#warehouses)
+	+ [Seznam skladů](#wh1)
+	+ [Stažení vybraného skladu podle ID](#wh2)
+	+ [Přidání nového skladu](#wh3)
+	+ [Aktualizace skladu](#cat4)
+	+ [Odstranění skladu podle ID](#cat5)
++ [Oddělení](#departments)
+	+ [Seznam oddělení](#dep1)
+	+ [Stažení vybraného oddělení podle ID](#dep2)
+	+ [Přidání nového oddělení](#dep3)
+	+ [Aktualizace oddělení](#dep4)
+  	+ [Odstranění oddělení po ID](#dep5)
++ [Přihlášení a stažení tokenu přes API](#get_token_by_api)
++ [Systémové účty](#accounts)
++ [Příklady v PHP a Ruby](#codes)
 
 
 <a name="token"/>
 
 ## API token
 
-`API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
+`API_TOKEN` je nutné stáhnout z nastavení aplikace ("Nastavení -> Nastavení účtu -> Integrace -> Autorizační kód API")
 
 <a name="list_params"/>
 
-## Dodatkowe parametry dostępne przy pobieraniu listy rekordów
-Do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
+## Další parametry dostupné při načítání seznamu záznamů
+Díky vyvolání lze předat další parametry – stejné parametry, jaké se používají v aplikaci, např. `page =`, `period =` atd.
 
-Parametr `page=` umożliwia iterowanie po paginowanych rekordach.
-Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów.
-Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+Parametr `page =` Vám umožňuje iterovat stránkované záznamy.
+Ve výchozím nastavení je nastavena na `1` a zobrazuje prvních N záznamů, kde N je limit počtu vrácených záznamů.
+Chcete-li získat dalších N záznamů, proveďte akci s parametrem `page = 2` atd.
 
-Parametr `period=` umożliwia wybranie rekordów z zadanego okresu.
-Może przyjąć następujące wartości:
+Parametr `period = ' umožňuje vybrat záznamy z daného období.
+Může přijmout následující hodnoty:
 - last_12_months
 - this_month
 - last_30_days
@@ -121,39 +121,39 @@ Może przyjąć następujące wartości:
 - this_year
 - last_year
 - all
-- more (tutaj trzeba jeszcze dostarczyć dodatkowe parametry date_from (np. "2018-12-16") i date_to (np. "2018-12-21"))
+- more (zde musíte zadat další parametry date_from (např. "2018-12-16") a date_to (např. "2018-12-21"))
 
-Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rekordów wraz z ich pozycjami
+Parametr `include_positions =` s hodnotou `true` umožňuje získat seznam záznamů s jejich pozicemi
 
-Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
+Parametr `income =` s hodnotou `no` umožňuje stahovat výdajové faktury
 
 <a name="examples"/>
 
-## Przykłady wywołania
+## Příklady vyvolání
 
 <a name="f1"/>
-Pobranie listy faktur z aktualnego miesiąca
+Stažení seznamu faktur za aktuální měsíc
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN&page=1
 ```
 
 <a name="f2"/>
-Pobranie listy faktur wraz z ich pozycjami
+Stažení seznamu faktur s jejich položkami
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?include_positions=true&api_token=API_TOKEN&page=1
 ```
 
 <a name="f3"/>
-Faktury danego klienta
+Faktury zákazníka
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
 <a name="f4"/>
-Pobranie faktury po ID
+Stažení faktury po ID
 
 
 ```shell
@@ -161,7 +161,7 @@ curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
 <a name="f5"/>
-Pobranie PDF-a
+Stažení PDF
 
 
 ```shell
@@ -169,22 +169,22 @@ curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
 <a name="f6"/>
-Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email")
+Zaslání faktury e-mailem zákazníkovi (na e-mail zákazníka uvedený při vytváření faktury, pole "email_kupujícího")
 
 
 ```shell
 curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_by_email.json?api_token=API_TOKEN
 ```
 
-inne opcje PDF:
-* print_option=original - Oryginał
-* print_option=copy - Kopia
-* print_option=original_and_copy - Oryginał i kopia
-* print_option=duplicate Duplikat
+další možnosti PDF:
+* print_option=original - Originál
+* print_option=copy - Kopie
+* print_option=original_and_copy - Originál a kopie
+* print_option=duplicate Duplikát
 
 
 <a name="f7"/>
-Dodanie nowej faktury
+Přidání nové faktury
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
